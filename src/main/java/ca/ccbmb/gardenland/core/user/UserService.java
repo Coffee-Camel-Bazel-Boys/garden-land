@@ -20,15 +20,14 @@ public class UserService {
 
     public UserDto create(UserDto dto) {
         validateForSaveAndThrow(dto);
-
-        return assembler.assemble(repository.save(assembler.disassemble(dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassemble(dto)));
     }
 
     public UserDto update(UserDto dto) {
         validateForSaveAndThrow(dto);
 
         User entity = getByNumber(dto.getUserNumber());
-        return assembler.assemble(repository.save(assembler.disassembleInto(entity, dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassembleInto(entity, dto)));
     }
 
     public void delete(String userNumber) {

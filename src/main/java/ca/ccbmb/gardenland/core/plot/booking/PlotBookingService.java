@@ -33,14 +33,14 @@ public class PlotBookingService {
     public PlotBookingDto create(PlotBookingDto dto) {
         validateForSaveAndThrow(dto);
 
-        return assembler.assemble(repository.save(assembler.disassemble(dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassemble(dto)));
     }
 
     public PlotBookingDto update(PlotBookingDto dto) {
         validateForSaveAndThrow(dto);
         PlotBooking entity = getByNumber(dto.getPlotBookingNumber());
 
-        return assembler.assemble(repository.save(assembler.disassembleInto(entity, dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassembleInto(entity, dto)));
     }
 
     public void delete(String plotBookingNumber) {

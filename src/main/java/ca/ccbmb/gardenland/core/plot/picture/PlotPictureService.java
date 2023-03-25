@@ -27,7 +27,7 @@ public class PlotPictureService {
 
     public PictureDto create(String plotNumber, MultipartFile file) {
         validator.validateForSave(file);
-        return assembler.assemble(repository.save(assembler.disassemble(file, plotNumber)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassemble(file, plotNumber)));
     }
 
     public void delete(String plotPictureNumber) {

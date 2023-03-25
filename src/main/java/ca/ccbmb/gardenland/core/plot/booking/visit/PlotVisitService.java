@@ -33,14 +33,14 @@ public class PlotVisitService {
     public PlotVisitDto create(PlotVisitDto dto) {
         validateForSaveAndThrow(dto);
 
-        return assembler.assemble(repository.save(assembler.disassemble(dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassemble(dto)));
     }
 
     public PlotVisitDto update(PlotVisitDto dto) {
         validateForSaveAndThrow(dto);
         PlotVisit entity = getByNumber(dto.getPlotVisitNumber());
 
-        return assembler.assemble(repository.save(assembler.disassembleInto(entity, dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassembleInto(entity, dto)));
     }
 
     public void delete(String visitNumber) {
@@ -51,14 +51,14 @@ public class PlotVisitService {
         PlotVisit entity = getByNumber(visitNumber);
         validateForStatusChangeAndThrow(entity);
         entity.approve();
-        return assembler.assemble(repository.save(entity));
+        return assembler.assemble(repository.saveAndFlush(entity));
     }
 
     public PlotVisitDto cancel(String visitNumber) {
         PlotVisit entity = getByNumber(visitNumber);
         validateForStatusChangeAndThrow(entity);
         entity.cancel();
-        return assembler.assemble(repository.save(entity));
+        return assembler.assemble(repository.saveAndFlush(entity));
     }
 
     private PlotVisit getByNumber(String number) {

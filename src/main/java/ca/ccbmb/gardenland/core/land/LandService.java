@@ -33,14 +33,14 @@ public class LandService {
     public LandDto create(LandDto dto) {
         validateForSaveAndThrow(dto);
 
-        return assembler.assemble(repository.save(assembler.disassemble(dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassemble(dto)));
     }
 
     public LandDto update(LandDto dto) {
         validateForSaveAndThrow(dto);
         Land entity = getByNumber(dto.getLandNumber());
 
-        return assembler.assemble(repository.save(assembler.disassembleInto(entity, dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassembleInto(entity, dto)));
     }
 
     public void delete(String landNumber) {

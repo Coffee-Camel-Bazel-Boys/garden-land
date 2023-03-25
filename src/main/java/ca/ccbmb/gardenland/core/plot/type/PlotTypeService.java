@@ -28,7 +28,7 @@ public class PlotTypeService {
 
     public PlotTypeDto create(PlotTypeDto dto) {
         validateForSaveAndThrow(dto);
-        return assembler.assemble(repository.save(assembler.disassemble(dto)));
+        return assembler.assemble(repository.saveAndFlush(assembler.disassemble(dto)));
     }
 
     public void delete(String plotTypeNumber) {
