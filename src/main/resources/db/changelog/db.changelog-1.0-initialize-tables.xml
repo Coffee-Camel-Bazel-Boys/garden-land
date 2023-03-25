@@ -4,15 +4,15 @@
     <changeSet id="create-usr-able" author="Nickknack">
         <createTable tableName="usr">
             <column name="usr_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="usr_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="email" type="varchar(50)">
             </column>
             <column name="name" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -22,19 +22,19 @@
             <column name="usr_number"></column>
         </createIndex>
     </changeSet>
-    
+
     <changeSet id="create-land-table" author="Nickknack">
         <createTable tableName="land">
             <column name="land_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="usr_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_land_user" references="usr(usr_id)"/>
             </column>
             <column name="land_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            <column name="description" type="text" />
+            <column name="description" type="text"/>
         </createTable>
     </changeSet>
 
@@ -50,16 +50,16 @@
     <changeSet id="create-land-rule-table" author="Nickknack">
         <createTable tableName="land_rule">
             <column name="land_rule_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="land_rule_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_rule_land" references="land(land_id)"/>
             </column>
             <column name="description" type="text">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -76,25 +76,25 @@
     <changeSet id="create-plot" author="Nickknack">
         <createTable tableName="plot">
             <column name="plot_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_land" references="land(land_id)"/>
             </column>
             <column name="plot_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="description" type="text">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="size" type="number">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="size_type" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="shape" type="blob">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -117,26 +117,26 @@
     <changeSet id="create-plot-address" author="Nickknack">
         <createTable tableName="plot_address">
             <column name="plot_address_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="plot_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_address_plot" references="plot(plot_id)"/>
             </column>
             <column name="street_1" type="varchar(225)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            <column name="street_2" type="varchar(225)" />
+            <column name="street_2" type="varchar(225)"/>
             <column name="postal_code" type="varchar(7)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="city" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="province" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="country" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -150,13 +150,13 @@
     <changeSet id="create-plot-type" author="Nickknack">
         <createTable tableName="plot_type">
             <column name="plot_type_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="plot_type_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="type" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -170,10 +170,12 @@
     <changeSet id="create-plot-plot-type" author="Nickknack">
         <createTable tableName="plot_plot_type">
             <column name="plot_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot" references="plot(plot_id)" />
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot"
+                             references="plot(plot_id)"/>
             </column>
             <column name="plot_type_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot_type" references="plot_type(plot_type_id)" />
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot_type"
+                             references="plot_type(plot_type_id)"/>
             </column>
         </createTable>
     </changeSet>
@@ -181,19 +183,19 @@
     <changeSet id="create-plot-picture" author="Nickknack">
         <createTable tableName="plot_picture">
             <column name="plot_picture_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="plot_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_picture_plot" references="plot(plot_id)"/>
             </column>
             <column name="plot_picture_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="file_type" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="picture" type="blob">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -210,22 +212,22 @@
     <changeSet id="create-land-availability" author="Nickknack">
         <createTable tableName="land_availability">
             <column name="land_availability_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_land_availability_land" references="land(land_id)"/>
             </column>
             <column name="land_availability_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="day_of_week" type="varchar(15)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="start_time" type="time">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="end_time" type="time">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -242,7 +244,7 @@
     <changeSet id="create-plot-booking" author="Nickknack">
         <createTable tableName="plot_booking">
             <column name="plot_booking_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="plot_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_booking_plot" references="plot(plot_id)"/>
@@ -251,13 +253,13 @@
                 <constraints nullable="false" foreignKeyName="fk_plot_booking_usr" references="usr(usr_id)"/>
             </column>
             <column name="plot_booking_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="start_date" type="date">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="end_date" type="date">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -277,28 +279,26 @@
     <changeSet id="create-plot-visit" author="Nickknack">
         <createTable tableName="plot_visit">
             <column name="plot_visit_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="plot_booking_id" type="varchar(36)">
-                <constraints nullable="false" foreignKeyName="fk_plot_visit_plot_booking" references="plot_booking(plot_booking_id)"/>
-            </column>
-            <column name="usr_id" type="varchar(36)">
-                <constraints nullable="false" foreignKeyName="fk_plot_visit_usr" references="usr(usr_id)"/>
+                <constraints nullable="false" foreignKeyName="fk_plot_visit_plot_booking"
+                             references="plot_booking(plot_booking_id)"/>
             </column>
             <column name="plot_visit_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="status" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="date" type="date">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="start_time" type="time">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="end_time" type="time">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
@@ -310,23 +310,30 @@
         <createIndex tableName="plot_visit" indexName="plot_visit_number_idx">
             <column name="plot_visit_number"></column>
         </createIndex>
+        <createIndex tableName="plot_visit" indexName="plot_visit_status_idx">
+            <column name="status"></column>
+        </createIndex>
+        <createIndex tableName="plot_visit" indexName="plot_visit_date_idx">
+            <column name="date"></column>
+        </createIndex>
     </changeSet>
 
     <changeSet id="create-plot-booking-plant" author="Nickknack">
         <createTable tableName="plot_booking_plant">
             <column name="plot_booking_plant_id" type="varchar(36)">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="plot_booking_id" type="varchar(36)">
-                <constraints nullable="false" foreignKeyName="fk_plot_booking_plant_plot_booking" references="plot_booking(plot_booking_id)"/>
+                <constraints nullable="false" foreignKeyName="fk_plot_booking_plant_plot_booking"
+                             references="plot_booking(plot_booking_id)"/>
             </column>
             <column name="plot_booking_plant_number" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
-            <column name="description" type="text" />
+            <column name="description" type="text"/>
         </createTable>
     </changeSet>
 
