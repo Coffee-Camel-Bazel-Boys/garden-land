@@ -3,6 +3,7 @@ package ca.ccbmb.gardenland.dto;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -11,7 +12,7 @@ public class LandDto {
     private String landNumber;
     private String userNumber;
     private String description;
-    private List<LandRuleDto> rules;
-    private List<LandAvailabilityDto> availabilities;
+    private List<LandRuleDto> rules = new ArrayList<>();
+    private List<LandAvailabilityDto> availabilities = new ArrayList<>();
 
 }

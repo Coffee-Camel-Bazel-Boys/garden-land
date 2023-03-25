@@ -2,12 +2,9 @@ package ca.ccbmb.gardenland.controller;
 
 import ca.ccbmb.gardenland.dto.LandDto;
 import ca.ccbmb.gardenland.dto.LandSearchCriteriaDto;
-import ca.ccbmb.gardenland.dto.LoginDto;
-import ca.ccbmb.gardenland.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +30,7 @@ public class LandController {
 
     @PutMapping("/{landNumber}")
     public LandDto update(@PathVariable String landNumber, @RequestBody LandDto landDto) {
-        landDto.setUserNumber(landNumber);
+        landDto.setLandNumber(landNumber);
         return null;
     }
 
