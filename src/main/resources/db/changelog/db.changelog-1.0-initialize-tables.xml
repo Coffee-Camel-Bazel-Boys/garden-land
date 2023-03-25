@@ -78,4 +78,43 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="create-plot-land-id-index" author="Nickknack">
+        <createIndex tableName="plot" indexName="plot_land_id_idx">
+            <column name="land_id"></column>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-plot-address" author="Nickknack">
+        <createTable tableName="plot_address">
+            <column name="plot_address_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="plot_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_address_plot" references="plot(plot_id)"/>
+            </column>
+            <column name="street_1" type="varchar(225)">
+                <constraints nullable="false" />
+            </column>
+            <column name="street_2" type="varchar(225)" />
+            <column name="postal_code" type="varchar(7)">
+                <constraints nullable="false" />
+            </column>
+            <column name="city" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="province" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="country" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-plot-address-plot-id-index" author="Nickknack">
+        <createIndex tableName="plot_address" indexName="plot_address_plot_id_idx">
+            <column name="plot_id"></column>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
