@@ -1,5 +1,6 @@
 package ca.ccbmb.gardenland.controller;
 
+import ca.ccbmb.gardenland.core.land.LandService;
 import ca.ccbmb.gardenland.dto.LandDto;
 import ca.ccbmb.gardenland.dto.LandSearchCriteriaDto;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/lands")
 @RequiredArgsConstructor
 public class LandController {
+    private final LandService service;
+
     @GetMapping("/{landNumber}")
     public LandDto get(@PathVariable String landNumber) {
         return null;
@@ -19,24 +22,24 @@ public class LandController {
 
     @GetMapping("")
     public Page<LandDto> search(LandSearchCriteriaDto searchCriteria, Pageable pageable) {
-        return null;
+        return service.find(searchCriteria, pageable);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public LandDto create(@RequestBody LandDto landDto) {
-        return null;
+        return service.create(landDto);
     }
 
     @PutMapping("/{landNumber}")
     public LandDto update(@PathVariable String landNumber, @RequestBody LandDto landDto) {
         landDto.setLandNumber(landNumber);
-        return null;
+        return service.update(landDto);
     }
 
     @DeleteMapping("/{landNumber}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String landNumber) {
-
+        service.delete(landNumber);
     }
 }
