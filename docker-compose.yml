@@ -1,0 +1,6 @@
+services:
+  message-server:
+    container_name: garden-land
+    build: .
+    ports:
+      - 42069:42069
