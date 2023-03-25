@@ -1,5 +1,6 @@
 package ca.ccbmb.gardenland.controller;
 
+import ca.ccbmb.gardenland.core.plot.picture.PlotPictureService;
 import ca.ccbmb.gardenland.dto.PictureDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,19 +15,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlotPictureController {
 
+    private final PlotPictureService service;
+
     @GetMapping("")
     public List<PictureDto> findAllForPlot(@PathVariable String plotNumber) {
-        return null;
+        return service.findAllByPlotNumber(plotNumber);
     }
+
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public PictureDto addPicture(@PathVariable String plotNumber, @RequestPart("picture") PictureDto picture, @RequestPart("file") MultipartFile file) {
-        return null;
+    public PictureDto addPicture(@PathVariable String plotNumber, @RequestPart("file") MultipartFile file) {
+        return service.create(plotNumber, file);
     }
 
     @DeleteMapping("/{pictureNumber}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public PictureDto deletePicture(@PathVariable String plotNumber, @PathVariable("pictureNumber") String pictureNumber) {
-        return null;
+    public void deletePicture(@PathVariable String plotNumber, @PathVariable("pictureNumber") String pictureNumber) {
+        service.delete(pictureNumber);
     }
 }
