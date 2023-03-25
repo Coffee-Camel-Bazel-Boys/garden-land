@@ -96,7 +96,7 @@
             <column name="size_type" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="shape" type="blob">
+            <column name="shape" type="polygon">
                 <constraints nullable="false"/>
             </column>
         </createTable>
