@@ -8,6 +8,8 @@ services:
       - 42069
     networks:
       - garden-land
+    env_file: .env
+
 networks:
   garden-land:
     name: garden-land
