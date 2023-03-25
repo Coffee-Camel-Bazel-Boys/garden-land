@@ -1,7 +1,7 @@
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <changeSet id="create-usr-able" author="kowalchn">
+    <changeSet id="create-usr-able" author="Nickknack">
         <createTable tableName="usr">
             <column name="usr_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
@@ -15,7 +15,7 @@
         </createTable>
     </changeSet>
     
-    <changeSet id="create-land-able" author="nickknack">
+    <changeSet id="create-land-able" author="Nickknack">
         <createTable tableName="land">
             <column name="land_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
@@ -30,13 +30,13 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-land-user-id-index" author="nickknack">
+    <changeSet id="create-land-user-id-index" author="Nickknack">
         <createIndex tableName="land" indexName="land_user_id_idx">
             <column name="usr_id"></column>
         </createIndex>
     </changeSet>
 
-    <changeSet id="create-rule-able" author="nickknack">
+    <changeSet id="create-rule-able" author="Nickknack">
         <createTable tableName="rule">
             <column name="rule_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
@@ -50,9 +50,32 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-rule-land-id-index" author="nickknack">
+    <changeSet id="create-rule-land-id-index" author="Nickknack">
         <createIndex tableName="rule" indexName="rule_land_id_idx">
             <column name="land_id"></column>
         </createIndex>
+    </changeSet>
+
+    <changeSet id="create-plot" author="Nickknack">
+        <createTable tableName="plot">
+            <column name="plot_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="land_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_land" references="land(land_id)"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false" />
+            </column>
+            <column name="size" type="number">
+                <constraints nullable="false" />
+            </column>
+            <column name="size_type" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="shape" type="blob">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
     </changeSet>
 </databaseChangeLog>
