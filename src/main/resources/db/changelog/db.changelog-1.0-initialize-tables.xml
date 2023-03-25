@@ -52,6 +52,9 @@
             <column name="land_rule_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
+            <column name="land_rule_number" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_rule_land" references="land(land_id)"/>
             </column>
@@ -64,6 +67,9 @@
     <changeSet id="create-land-rule-indexes" author="Nickknack">
         <createIndex tableName="land_rule" indexName="land_rule_land_id_idx">
             <column name="land_id"></column>
+        </createIndex>
+        <createIndex tableName="land_rule" indexName="land_rule_number_idx">
+            <column name="land_rule_number"></column>
         </createIndex>
     </changeSet>
 
@@ -200,6 +206,9 @@
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_land_availability_land" references="land(land_id)"/>
             </column>
+            <column name="land_availability_number" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
             <column name="day_of_week" type="varchar(15)">
                 <constraints nullable="false" />
             </column>
@@ -212,9 +221,12 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-land-availability-land-id-index" author="Nickknack">
+    <changeSet id="create-land-availability-indexes" author="Nickknack">
         <createIndex tableName="land_availability" indexName="land_availability_land_id_idx">
             <column name="land_id"></column>
+        </createIndex>
+        <createIndex tableName="land_availability" indexName="land_availability_number_idx">
+            <column name="land_availability_number"></column>
         </createIndex>
     </changeSet>
 
