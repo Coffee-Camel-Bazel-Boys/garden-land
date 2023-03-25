@@ -159,4 +159,30 @@
             <column name="plot_id"></column>
         </createIndex>
     </changeSet>
+
+    <changeSet id="create-land-availability" author="Nickknack">
+        <createTable tableName="land_availability">
+            <column name="land_availability_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="land_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_land_availability_land" references="land(land_id)"/>
+            </column>
+            <column name="day_of_week" type="varchar(15)">
+                <constraints nullable="false" />
+            </column>
+            <column name="start_time" type="time">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_time" type="time">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-land-availability-land-id-index" author="Nickknack">
+        <createIndex tableName="land_availability" indexName="land_availability_land_id_idx">
+            <column name="land_id"></column>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
