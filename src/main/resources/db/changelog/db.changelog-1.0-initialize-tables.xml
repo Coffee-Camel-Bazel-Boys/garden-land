@@ -189,6 +189,9 @@
             <column name="plot_picture_number" type="varchar(9)">
                 <constraints nullable="false" />
             </column>
+            <column name="file_type" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
             <column name="picture" type="blob">
                 <constraints nullable="false" />
             </column>

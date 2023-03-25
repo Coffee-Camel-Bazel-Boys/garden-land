@@ -38,6 +38,7 @@ public class LandController {
     }
 
     @DeleteMapping("/{landNumber}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String landNumber) {
 
     }

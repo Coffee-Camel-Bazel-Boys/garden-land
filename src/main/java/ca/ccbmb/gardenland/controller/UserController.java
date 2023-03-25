@@ -33,6 +33,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userNumber}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String userNumber) {
 
     }
