@@ -128,4 +128,15 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="create-plot-plot-type" author="Nickknack">
+        <createTable tableName="plot_plot_type">
+            <column name="plot_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot" references="plot(plot_id)" />
+            </column>
+            <column name="plot_type_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot_type" references="plot_type(plot_type_id)" />
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
