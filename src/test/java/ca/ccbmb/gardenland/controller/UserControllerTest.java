@@ -74,7 +74,7 @@ public class UserControllerTest {
 
     @Test
     public void testUpdateInvalidUserNumber_shouldThrowUserNotFoundException() {
-        UserDto existingUser = userController.create(UserTestDataFactory.createValidUserDto(null));
+        userController.create(UserTestDataFactory.createValidUserDto(null));
         UserDto input = UserTestDataFactory.createValidUserDto(INVALID_USER_NUMBER);
 
         assertThrows(UserNotFoundException.class, () -> userController.update(INVALID_USER_NUMBER, input));
