@@ -123,18 +123,9 @@
             <column name="plot_type_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="plot_id" type="varchar(36)">
-                <constraints nullable="false" foreignKeyName="fk_plot_type_plot" references="plot(plot_id)"/>
-            </column>
             <column name="type" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
         </createTable>
-    </changeSet>
-
-    <changeSet id="create-plot-type-plot-id-index" author="Nickknack">
-        <createIndex tableName="plot_type" indexName="plot_type_plot_id_idx">
-            <column name="plot_id"></column>
-        </createIndex>
     </changeSet>
 </databaseChangeLog>
