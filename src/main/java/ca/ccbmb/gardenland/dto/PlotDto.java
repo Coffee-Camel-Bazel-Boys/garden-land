@@ -17,4 +17,6 @@ public class PlotDto {
     private BigDecimal size;
     private PlotSizeUnitTypeDto sizeUnitType;
     private String description;
+
+    private List<PointDto> shape;
 }
