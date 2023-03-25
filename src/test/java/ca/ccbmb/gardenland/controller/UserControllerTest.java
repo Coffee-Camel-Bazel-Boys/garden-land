@@ -27,7 +27,7 @@ public class UserControllerTest {
     @Autowired
     private UserController userController;
 
-    private static final String INVALID_USER_NUMBER = "999999999";
+    private static final String INVALID_USER_NUMBER = "999999";
 
     @BeforeEach
     public void setUp() {
@@ -40,8 +40,8 @@ public class UserControllerTest {
 
         UserDto result = userController.create(input);
         assertAll(
-                () -> assertEquals(input.getName(), result.getName()),
-                () -> assertNotNull(result.getUserNumber())
+                () -> assertEquals(input.getName(), result.getName(), "name"),
+                () -> assertNotNull(result.getUserNumber(), "number")
         );
     }
 
@@ -59,8 +59,8 @@ public class UserControllerTest {
 
         UserDto result = userController.update(existingUser.getUserNumber(), input);
         assertAll(
-                () -> assertEquals(input.getName(), result.getName()),
-                () -> assertEquals(existingUser.getUserNumber(), result.getUserNumber())
+                () -> assertEquals(input.getName(), result.getName(), "name"),
+                () -> assertEquals(existingUser.getUserNumber(), result.getUserNumber(), "number")
         );
     }
 
@@ -69,7 +69,7 @@ public class UserControllerTest {
         UserDto existingUser = userController.create(UserTestDataFactory.createValidUserDto(null));
         UserDto input = UserTestDataFactory.createValidUserDto(existingUser.getUserNumber()).setName(null);
 
-        assertThrows(ValidationException.class, () -> userController.create(input));
+        assertThrows(ValidationException.class, () -> userController.update(existingUser.getUserNumber(), input));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class UserControllerTest {
         UserDto existingUser = userController.create(UserTestDataFactory.createValidUserDto(null));
         UserDto input = UserTestDataFactory.createValidUserDto(INVALID_USER_NUMBER);
 
-        assertThrows(UserNotFoundException.class, () -> userController.create(input));
+        assertThrows(UserNotFoundException.class, () -> userController.update(INVALID_USER_NUMBER, input));
     }
 
     @Test
@@ -87,8 +87,8 @@ public class UserControllerTest {
         UserDto result = userController.get(existingUser.getUserNumber());
 
         assertAll(
-                () -> assertEquals(existingUser.getName(), result.getName()),
-                () -> assertEquals(existingUser.getUserNumber(), result.getUserNumber())
+                () -> assertEquals(existingUser.getName(), result.getName(), "name"),
+                () -> assertEquals(existingUser.getUserNumber(), result.getUserNumber(), "number")
         );
     }
 
