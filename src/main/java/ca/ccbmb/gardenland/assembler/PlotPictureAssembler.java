@@ -28,7 +28,7 @@ public class PlotPictureAssembler {
         Plot plot = plotRepository.findByPlotNumber(Integer.valueOf(plotNumber).intValue())
                 .orElseThrow(() -> new PlotNotFoundException(plotNumber));
         try {
-            return PlotPicture.newInstance(plot.getPlotId(), file.getContentType(), file.getBytes());
+            return PlotPicture.newInstance(plot.getPlotId(), file.getContentType(), file.getBytes()).setPlot(plot);
         } catch (IOException ioException) {
             throw new UncheckedIOException(ioException);
         }

@@ -40,7 +40,7 @@ public class PlotBookingAssembler {
         User user = userRepository.findByUserNumber(Integer.valueOf(dto.getUserNumber()).intValue())
                 .orElseThrow(() -> new UserNotFoundException(dto.getUserNumber()));
 
-        return disassembleInto(PlotBooking.newInstance(plot.getPlotId(), user.getUserId()), dto);
+        return disassembleInto(PlotBooking.newInstance(plot.getPlotId(), user.getUserId()).setPlot(plot).setUser(user), dto);
     }
 
     public PlotBooking disassembleInto(PlotBooking entity, PlotBookingDto dto) {

@@ -51,6 +51,7 @@ public class PlotVisit {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plot_booking_id", insertable = false, updatable = false)
+    @Setter
     private PlotBooking plotBooking;
 
     public static PlotVisit newInstance(UUID plotBookingId) {

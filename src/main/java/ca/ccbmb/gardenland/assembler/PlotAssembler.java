@@ -22,12 +22,11 @@ import java.util.UUID;
 public class PlotAssembler {
     private final LandRepository landRepository;
     private final PlotTypeRepository plotTypeRepository;
-    private final PlotTypeAssembler plotTypeAssembler;
 
     public Plot disassemble(PlotDto dto) {
         Land land = landRepository.findByLandNumber(Integer.valueOf(dto.getLandNumber()).intValue())
                 .orElseThrow(() -> new LandNotFoundException(dto.getLandNumber()));
-        return disassembleInto(Plot.newInstance(land.getLandId()), dto);
+        return disassembleInto(Plot.newInstance(land.getLandId()).setLand(land), dto);
     }
 
     public Plot disassembleInto(Plot entity, PlotDto dto) {

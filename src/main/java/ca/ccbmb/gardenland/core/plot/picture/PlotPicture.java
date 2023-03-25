@@ -3,6 +3,7 @@ package ca.ccbmb.gardenland.core.plot.picture;
 import ca.ccbmb.gardenland.core.plot.Plot;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -38,6 +39,7 @@ public class PlotPicture {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plot_id", insertable = false, updatable = false)
+    @Setter
     private Plot plot;
 
     public static PlotPicture newInstance(UUID plotId, String fileType, byte[] picture) {

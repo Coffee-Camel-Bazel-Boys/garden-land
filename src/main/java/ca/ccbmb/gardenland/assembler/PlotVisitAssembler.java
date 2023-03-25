@@ -16,7 +16,7 @@ public class PlotVisitAssembler {
     public PlotVisit disassemble(PlotVisitDto dto) {
         PlotBooking plotBooking = plotBookingRepository.findByPlotBookingNumber(Integer.valueOf(dto.getPlotBookingNumber()).intValue())
                 .orElseThrow(() -> new PlotBookingNotFoundException(dto.getPlotBookingNumber()));
-        return disassembleInto(PlotVisit.newInstance(plotBooking.getPlotBookingId()), dto);
+        return disassembleInto(PlotVisit.newInstance(plotBooking.getPlotBookingId()).setPlotBooking(plotBooking), dto);
     }
 
     public PlotVisit disassembleInto(PlotVisit entity, PlotVisitDto dto) {

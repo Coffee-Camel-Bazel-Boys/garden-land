@@ -51,10 +51,12 @@ public class PlotBooking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plot_id", insertable = false, updatable = false)
+    @Setter
     private Plot plot;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usr_id", insertable = false, updatable = false)
+    @Setter
     private User user;
 
     @OneToMany(mappedBy = "plotBooking", cascade = CascadeType.ALL, orphanRemoval = true)

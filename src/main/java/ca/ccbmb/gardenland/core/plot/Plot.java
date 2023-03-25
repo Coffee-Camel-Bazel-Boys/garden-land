@@ -68,6 +68,7 @@ public class Plot {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "land_id", insertable = false, updatable = false)
+    @Setter
     private Land land;
 
     public static Plot newInstance(UUID landId) {
