@@ -1,5 +1,6 @@
 package ca.ccbmb.gardenland.core.user;
 
+import ca.ccbmb.gardenland.core.land.Land;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -27,6 +30,9 @@ public class User {
     @Column(name = "name")
     @Setter
     private String name;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Land> lands = new HashSet<>();
 
     public static User newInstance() {
         User user = new User();

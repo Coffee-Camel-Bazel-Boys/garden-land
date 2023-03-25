@@ -1,5 +1,8 @@
 package ca.ccbmb.gardenland.core.land;
 
+import ca.ccbmb.gardenland.core.land.availability.LandAvailability;
+import ca.ccbmb.gardenland.core.land.rule.LandRule;
+import ca.ccbmb.gardenland.core.user.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +10,8 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -31,6 +36,17 @@ public class Land {
     @Column(name = "description")
     @Setter
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "land", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<LandRule> rules = new HashSet<>();
+
+    @OneToMany(mappedBy = "land", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<LandAvailability> availabilities = new HashSet<>();
+
 
     public static Land newInstance(UUID userId) {
         Land land = new Land();
