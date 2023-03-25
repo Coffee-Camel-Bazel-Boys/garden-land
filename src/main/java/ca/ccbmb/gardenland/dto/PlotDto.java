@@ -11,7 +11,7 @@ import java.util.List;
 public class PlotDto {
     private String plotNumber;
     private String landNumber;
-    private PlotTypeDto type;
+    private String plotTypeNumber;
     private BigDecimal price;
     private AddressDto address;
     private BigDecimal size;

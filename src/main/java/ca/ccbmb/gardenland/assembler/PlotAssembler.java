@@ -32,8 +32,8 @@ public class PlotAssembler {
 
     public Plot disassembleInto(Plot entity, PlotDto dto) {
         if (entity.getPlotType().getPlotTypeNumber() != Integer.valueOf(dto.getPlotNumber()).intValue()) {
-            PlotType plotType = plotTypeRepository.findByPlotTypeNumber(Integer.valueOf(dto.getType().getPlotTypeNumber()))
-                    .orElseThrow(() -> new PlotTypeNotFoundException(dto.getType().getPlotTypeNumber()));
+            PlotType plotType = plotTypeRepository.findByPlotTypeNumber(Integer.valueOf(dto.getPlotNumber()))
+                    .orElseThrow(() -> new PlotTypeNotFoundException(dto.getPlotTypeNumber()));
             entity.setPlotTypeId(plotType.getPlotTypeId());
         }
 
@@ -51,7 +51,7 @@ public class PlotAssembler {
                 .setLandNumber(String.valueOf(entity.getLand().getLandNumber()))
                 .setSizeUnitType(new PlotSizeUnitTypeDto(entity.getSizeUnitType().name()))
                 .setAddress(assemble(entity.getPlotAddress()))
-                .setType(plotTypeAssembler.assemble(entity.getPlotType()));
+                .setPlotTypeNumber(String.valueOf(entity.getPlotType().getPlotTypeNumber()));
     }
 
     private PlotAddress disassemble(UUID plotId, AddressDto dto) {

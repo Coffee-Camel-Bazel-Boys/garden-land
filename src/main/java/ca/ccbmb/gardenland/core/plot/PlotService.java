@@ -4,12 +4,14 @@ import ca.ccbmb.gardenland.assembler.PlotAssembler;
 import ca.ccbmb.gardenland.dto.PlotDto;
 import ca.ccbmb.gardenland.dto.PlotSearchCriteriaDto;
 import ca.ccbmb.gardenland.exception.PlotNotFoundException;
+import ca.ccbmb.gardenland.exception.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -17,7 +19,7 @@ import javax.transaction.Transactional;
 public class PlotService {
     private final PlotAssembler assembler;
     private final PlotRepository repository;
-//    private final PlotValidator validator;
+    private final PlotValidator validator;
 
     public PlotDto get(String plotNumber) {
         return assembler.assemble(getByNumber(plotNumber));
@@ -51,11 +53,9 @@ public class PlotService {
     }
 
     private void validateForSaveAndThrow(PlotDto dto) {
-//        Map<String, String> errors = validator.validateForSave(dto);
-//        if (!errors.isEmpty()) {
-//            throw new ValidationException(errors);
-//        }
-
-        //add the validator in
+        Map<String, String> errors = validator.validateForSave(dto);
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
+        }
     }
 }
