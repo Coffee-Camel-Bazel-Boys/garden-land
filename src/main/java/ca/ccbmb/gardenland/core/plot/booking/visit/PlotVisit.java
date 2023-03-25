@@ -24,7 +24,7 @@ public class PlotVisit {
     private UUID plotVisitId;
 
     @Column(name = "plot_visit_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Generated(GenerationTime.INSERT)
     private int plotVisitNumber;
 
     @Type(type = "uuid-char")

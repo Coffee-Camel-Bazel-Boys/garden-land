@@ -22,7 +22,7 @@ public class BookingPlant {
     private UUID plotBookingPlantId;
 
     @Column(name = "plot_booking_plant_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Generated(GenerationTime.INSERT)
     private int plotBookingPlantNumber;
 
     @Type(type = "uuid-char")

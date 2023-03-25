@@ -28,7 +28,7 @@ public class LandAssembler {
         User user = userRepository.findByUserNumber(Integer.valueOf(dto.getUserNumber()))
                 .orElseThrow(() -> new UserNotFoundException(dto.getUserNumber()));
 
-        return disassembleInto(Land.newInstance(user.getUserId()), dto);
+        return disassembleInto(Land.newInstance(user.getUserId()).setUser(user), dto);
     }
 
     public Land disassembleInto(Land entity, LandDto dto) {

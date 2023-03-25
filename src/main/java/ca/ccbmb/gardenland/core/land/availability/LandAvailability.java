@@ -23,7 +23,7 @@ public class LandAvailability {
     private UUID landAvailabilityId;
 
     @Column(name = "land_availability_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Generated(GenerationTime.INSERT)
     private int landAvailabilityNumber;
 
     @Type(type = "uuid-char")

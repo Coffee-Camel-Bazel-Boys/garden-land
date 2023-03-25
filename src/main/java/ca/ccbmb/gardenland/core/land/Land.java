@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -27,7 +29,7 @@ public class Land {
     private UUID landId;
 
     @Column(name = "land_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Generated(GenerationTime.INSERT)
     private int landNumber;
 
     @Type(type = "uuid-char")
@@ -40,6 +42,7 @@ public class Land {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usr_id", insertable = false, updatable = false)
+    @Setter
     private User user;
 
     @OneToMany(mappedBy = "land", cascade = CascadeType.ALL, orphanRemoval = true)

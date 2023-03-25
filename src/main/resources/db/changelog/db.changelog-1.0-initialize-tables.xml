@@ -6,7 +6,7 @@
             <column name="usr_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="usr_number" autoIncrement="true" type="integer">
+            <column name="usr_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="email" type="varchar(50)">
@@ -31,7 +31,7 @@
             <column name="usr_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_land_user" references="usr(usr_id)"/>
             </column>
-            <column name="land_number" autoIncrement="true" type="integer">
+            <column name="land_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="description" type="text"/>
@@ -52,7 +52,7 @@
             <column name="land_rule_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="land_rule_number" autoIncrement="true" type="integer">
+            <column name="land_rule_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="land_id" type="varchar(36)">
@@ -81,7 +81,7 @@
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_land" references="land(land_id)"/>
             </column>
-            <column name="plot_number" autoIncrement="true" type="integer">
+            <column name="plot_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="description" type="text">
@@ -155,7 +155,7 @@
             <column name="plot_type_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="plot_type_number" autoIncrement="true" type="integer">
+            <column name="plot_type_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="type" type="varchar(50)">
@@ -191,7 +191,7 @@
             <column name="plot_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_picture_plot" references="plot(plot_id)"/>
             </column>
-            <column name="plot_picture_number" autoIncrement="true" type="integer">
+            <column name="plot_picture_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="file_type" type="varchar(50)">
@@ -220,7 +220,7 @@
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_land_availability_land" references="land(land_id)"/>
             </column>
-            <column name="land_availability_number" autoIncrement="true" type="integer">
+            <column name="land_availability_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="day_of_week" type="varchar(15)">
@@ -255,7 +255,7 @@
             <column name="usr_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_booking_usr" references="usr(usr_id)"/>
             </column>
-            <column name="plot_booking_number" autoIncrement="true" type="integer">
+            <column name="plot_booking_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="start_date" type="date">
@@ -288,7 +288,7 @@
                 <constraints nullable="false" foreignKeyName="fk_plot_visit_plot_booking"
                              references="plot_booking(plot_booking_id)"/>
             </column>
-            <column name="plot_visit_number" autoIncrement="true" type="integer">
+            <column name="plot_visit_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="status" type="varchar(50)">
@@ -330,7 +330,7 @@
                 <constraints nullable="false" foreignKeyName="fk_plot_booking_plant_plot_booking"
                              references="plot_booking(plot_booking_id)"/>
             </column>
-            <column name="plot_booking_plant_number" autoIncrement="true" type="integer">
+            <column name="plot_booking_plant_number" type="SERIAL" autoIncrement="true">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="name" type="varchar(50)">

@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -24,7 +26,7 @@ public class User {
     private UUID userId;
 
     @Column(name = "usr_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Generated(GenerationTime.INSERT)
     private int userNumber;
 
     @Column(name = "name")

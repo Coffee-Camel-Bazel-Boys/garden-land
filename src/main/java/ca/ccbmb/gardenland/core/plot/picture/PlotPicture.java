@@ -21,7 +21,7 @@ public class PlotPicture {
     private UUID plotPictureId;
 
     @Column(name = "plot_picture_number")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Generated(GenerationTime.INSERT)
     private int plotPictureNumber;
 
     @Type(type = "uuid-char")
