@@ -17,7 +17,7 @@ public class LandController {
 
     @GetMapping("/{landNumber}")
     public LandDto get(@PathVariable String landNumber) {
-        return service.get(landNumber q );
+        return service.get(landNumber);
     }
 
     @GetMapping("")
