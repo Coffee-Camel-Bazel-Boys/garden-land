@@ -106,6 +106,12 @@
         <createIndex tableName="plot" indexName="plot_number_idx">
             <column name="plot_number"></column>
         </createIndex>
+        <createIndex tableName="plot" indexName="plot_size_idx">
+            <column name="size"></column>
+        </createIndex>
+        <createIndex tableName="plot" indexName="plot_price_idx">
+            <column name="price"></column>
+        </createIndex>
     </changeSet>
 
     <changeSet id="create-plot-address" author="Nickknack">
