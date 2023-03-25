@@ -14,4 +14,19 @@
             </column>
         </createTable>
     </changeSet>
+    
+    <changeSet id="create-land-able" author="nickknack">
+        <createTable tableName="land">
+            <column name="land_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_land_user" references="user(user_id)"/>
+            </column>
+            <column name="address" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="text" />
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
