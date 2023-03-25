@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 public class PlotSearchCriteriaDto {
     private List<String> plotTypeNumbers = new ArrayList<>();
-    ;
     private BigDecimal minimumPrice;
     private BigDecimal maximumPrice;
     private BigDecimal minimumSize;

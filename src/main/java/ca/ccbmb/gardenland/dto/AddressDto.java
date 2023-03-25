@@ -6,7 +6,6 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class AddressDto {
-    private String addressNumber;
     private String street1;
     private String street2;
     private String postalCode;

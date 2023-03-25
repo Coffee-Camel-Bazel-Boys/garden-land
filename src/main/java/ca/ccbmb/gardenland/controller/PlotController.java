@@ -1,13 +1,14 @@
 package ca.ccbmb.gardenland.controller;
 
-import ca.ccbmb.gardenland.dto.*;
+import ca.ccbmb.gardenland.core.plot.PlotService;
+import ca.ccbmb.gardenland.dto.PlotDto;
+import ca.ccbmb.gardenland.dto.PlotSearchCriteriaDto;
+import ca.ccbmb.gardenland.dto.PlotTypeDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,37 +16,39 @@ import java.util.List;
 @RequestMapping("/api/v1/plots")
 @RequiredArgsConstructor
 public class PlotController {
+    private final PlotService plotService;
+
     @GetMapping("/{plotNumber}")
     public PlotDto get(@PathVariable String plotNumber) {
-        return null;
+        return plotService.get(plotNumber);
     }
 
     @GetMapping("")
     public Page<PlotDto> search(PlotSearchCriteriaDto searchCriteria, Pageable pageable) {
-        return null;
+        return plotService.find(searchCriteria, pageable);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PlotDto create(@RequestBody PlotDto plotDto) {
-        return null;
+        return plotService.create(plotDto);
     }
 
     @PutMapping("/{plotNumber}")
     public PlotDto update(@PathVariable String plotNumber, @RequestBody PlotDto plotDto) {
         plotDto.setPlotNumber(plotNumber);
-        return null;
+        return plotService.update(plotDto);
     }
 
     @DeleteMapping("/{plotNumber}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String plotNumber) {
-
+        plotService.delete(plotNumber);
     }
 
     @GetMapping("/types")
     public List<PlotTypeDto> findAll() {
-        return null;
+        return plotService.findAllPlotTypes();
     }
 
 }

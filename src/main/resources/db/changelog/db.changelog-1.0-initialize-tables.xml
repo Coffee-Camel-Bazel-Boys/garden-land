@@ -349,4 +349,32 @@
         </createIndex>
     </changeSet>
 
+    <changeSet id="drop-plot-plot-type-table" author="Nickknack">
+        <dropTable tableName="plot_plot_type"/>
+        <rollback>
+            <createTable tableName="plot_plot_type">
+                <column name="plot_id" type="varchar(36)">
+                    <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot"
+                                 references="plot(plot_id)"/>
+                </column>
+                <column name="plot_type_id" type="varchar(36)">
+                    <constraints primaryKey="true" nullable="false" foreignKeyName="fk_plot_plot_type_plot_type"
+                                 references="plot_type(plot_type_id)"/>
+                </column>
+            </createTable>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="add-plot-type-id-to-plot" author="Nickknack">
+        <addColumn tableName="plot">
+            <column name="plot_type_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_plot_type"
+                             references="plot_type(plot_type_id)"/>
+            </column>
+        </addColumn>
+        <createIndex tableName="plot" indexName="plot_plot_type_id_idx">
+            <column name="plot_type_id"></column>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>

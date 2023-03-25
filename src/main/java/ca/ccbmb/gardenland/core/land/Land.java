@@ -2,6 +2,7 @@ package ca.ccbmb.gardenland.core.land;
 
 import ca.ccbmb.gardenland.core.land.availability.LandAvailability;
 import ca.ccbmb.gardenland.core.land.rule.LandRule;
+import ca.ccbmb.gardenland.core.plot.Plot;
 import ca.ccbmb.gardenland.core.user.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -49,6 +50,9 @@ public class Land {
     @Setter
     private Set<LandAvailability> availabilities = new HashSet<>();
 
+    @OneToMany(mappedBy = "land", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
+    private Set<Plot> plots = new HashSet<>();
 
     public static Land newInstance(UUID userId) {
         Land land = new Land();
