@@ -42,9 +42,11 @@ public class Land {
     private User user;
 
     @OneToMany(mappedBy = "land", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
     private Set<LandRule> rules = new HashSet<>();
 
     @OneToMany(mappedBy = "land", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
     private Set<LandAvailability> availabilities = new HashSet<>();
 
 
