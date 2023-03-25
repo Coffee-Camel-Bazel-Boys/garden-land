@@ -20,13 +20,39 @@
             <column name="land_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="user_id" type="varchar(36)">
-                <constraints nullable="false" foreignKeyName="fk_land_user" references="user(user_id)"/>
+            <column name="usr_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_land_user" references="usr(usr_id)"/>
             </column>
             <column name="address" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
             <column name="description" type="text" />
         </createTable>
+    </changeSet>
+
+    <changeSet id="create-land-user-id-index" author="nickknack">
+        <createIndex tableName="land" indexName="land_user_id_idx">
+            <column name="usr_id"></column>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-rule-able" author="nickknack">
+        <createTable tableName="rule">
+            <column name="rule_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="land_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_rule_land" references="land(land_id)"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-rule-land-id-index" author="nickknack">
+        <createIndex tableName="rule" indexName="rule_land_id_idx">
+            <column name="land_id"></column>
+        </createIndex>
     </changeSet>
 </databaseChangeLog>
