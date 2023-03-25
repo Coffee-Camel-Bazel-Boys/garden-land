@@ -34,9 +34,6 @@
             <column name="land_number" type="varchar(9)">
                 <constraints nullable="false" />
             </column>
-            <column name="address" type="varchar(50)">
-                <constraints nullable="false" />
-            </column>
             <column name="description" type="text" />
         </createTable>
     </changeSet>
