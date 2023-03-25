@@ -13,6 +13,7 @@ public class PlotDto {
     private String landNumber;
     private PlotTypeDto type;
     private BigDecimal price;
+    private AddressDto address;
     private BigDecimal size;
     private PlotSizeUnitTypeDto sizeUnitType;
     private String description;
