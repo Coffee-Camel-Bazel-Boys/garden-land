@@ -10,7 +10,6 @@ import ca.ccbmb.gardenland.core.plot.type.PlotTypeRepository;
 import ca.ccbmb.gardenland.dto.AddressDto;
 import ca.ccbmb.gardenland.dto.PlotDto;
 import ca.ccbmb.gardenland.dto.PlotSizeUnitTypeDto;
-import ca.ccbmb.gardenland.dto.PlotTypeDto;
 import ca.ccbmb.gardenland.exception.LandNotFoundException;
 import ca.ccbmb.gardenland.exception.PlotTypeNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +22,7 @@ import java.util.UUID;
 public class PlotAssembler {
     private final LandRepository landRepository;
     private final PlotTypeRepository plotTypeRepository;
+    private final PlotTypeAssembler plotTypeAssembler;
 
     public Plot disassemble(PlotDto dto) {
         Land land = landRepository.findByLandNumber(Integer.valueOf(dto.getLandNumber()).intValue())
@@ -51,13 +51,7 @@ public class PlotAssembler {
                 .setLandNumber(String.valueOf(entity.getLand().getLandNumber()))
                 .setSizeUnitType(new PlotSizeUnitTypeDto(entity.getSizeUnitType().name()))
                 .setAddress(assemble(entity.getPlotAddress()))
-                .setType(assemble(entity.getPlotType()));
-    }
-
-    public PlotTypeDto assemble(PlotType entity) {
-        return new PlotTypeDto()
-                .setName(entity.getName())
-                .setPlotTypeNumber(String.valueOf(entity.getPlotTypeNumber()));
+                .setType(plotTypeAssembler.assemble(entity.getPlotType()));
     }
 
     private PlotAddress disassemble(UUID plotId, AddressDto dto) {

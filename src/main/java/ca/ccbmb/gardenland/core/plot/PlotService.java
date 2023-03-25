@@ -1,10 +1,8 @@
 package ca.ccbmb.gardenland.core.plot;
 
 import ca.ccbmb.gardenland.assembler.PlotAssembler;
-import ca.ccbmb.gardenland.core.plot.type.PlotTypeRepository;
 import ca.ccbmb.gardenland.dto.PlotDto;
 import ca.ccbmb.gardenland.dto.PlotSearchCriteriaDto;
-import ca.ccbmb.gardenland.dto.PlotTypeDto;
 import ca.ccbmb.gardenland.exception.PlotNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -21,7 +17,6 @@ import java.util.stream.Collectors;
 public class PlotService {
     private final PlotAssembler assembler;
     private final PlotRepository repository;
-    private final PlotTypeRepository plotTypeRepository;
 //    private final PlotValidator validator;
 
     public PlotDto get(String plotNumber) {
@@ -48,12 +43,6 @@ public class PlotService {
 
     public void delete(String plotNumber) {
         repository.delete(getByNumber(plotNumber));
-    }
-
-    public List<PlotTypeDto> findAllPlotTypes() {
-        return plotTypeRepository.findAll().stream()
-                .map(assembler::assemble)
-                .collect(Collectors.toList());
     }
 
     private Plot getByNumber(String number) {

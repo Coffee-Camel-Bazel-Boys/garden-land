@@ -10,7 +10,6 @@ import java.util.Map;
 
 @Component
 public class LandValidator {
-
     private static final String DAY_REQUIRED = "DAY_REQUIRED";
     private static final String START_TIME_REQUIRED = "START_TIME_REQUIRED";
     private static final String START_TIME_AFTER_END_TIME = "START_TIME_AFTER_END_TIME";
