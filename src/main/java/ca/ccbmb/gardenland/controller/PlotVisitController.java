@@ -1,6 +1,7 @@
 package ca.ccbmb.gardenland.controller;
 
 import ca.ccbmb.gardenland.dto.PlotVisitDto;
+import ca.ccbmb.gardenland.dto.PlotVisitSearchCriteriaDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
