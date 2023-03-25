@@ -6,6 +6,9 @@
             <column name="usr_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
+            <column name="usr_number" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
             <column name="email" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
@@ -13,6 +16,12 @@
                 <constraints nullable="false" />
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="create-usr-usr-number-index" author="Nickknack">
+        <createIndex tableName="usr" indexName="usr_usr_number_idx">
+            <column name="usr_number"></column>
+        </createIndex>
     </changeSet>
     
     <changeSet id="create-land-able" author="Nickknack">
@@ -23,6 +32,9 @@
             <column name="usr_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_land_user" references="usr(usr_id)"/>
             </column>
+            <column name="land_number" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
             <column name="address" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
@@ -30,9 +42,12 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-land-user-id-index" author="Nickknack">
+    <changeSet id="create-land-indexes" author="Nickknack">
         <createIndex tableName="land" indexName="land_user_id_idx">
             <column name="usr_id"></column>
+        </createIndex>
+        <createIndex tableName="land" indexName="land_number_idx">
+            <column name="land_number"></column>
         </createIndex>
     </changeSet>
 
@@ -64,6 +79,9 @@
             <column name="land_id" type="varchar(36)">
                 <constraints nullable="false" foreignKeyName="fk_plot_land" references="land(land_id)"/>
             </column>
+            <column name="plot_number" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
             <column name="description" type="text">
                 <constraints nullable="false" />
             </column>
@@ -79,9 +97,12 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-plot-land-id-index" author="Nickknack">
+    <changeSet id="create-plot-indexes" author="Nickknack">
         <createIndex tableName="plot" indexName="plot_land_id_idx">
             <column name="land_id"></column>
+        </createIndex>
+        <createIndex tableName="plot" indexName="plot_number_idx">
+            <column name="plot_number"></column>
         </createIndex>
     </changeSet>
 
@@ -185,4 +206,87 @@
             <column name="land_id"></column>
         </createIndex>
     </changeSet>
+
+    <changeSet id="create-plot-booking" author="Nickknack">
+        <createTable tableName="plot_booking">
+            <column name="plot_booking_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="plot_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_booking_plot" references="plot(plot_id)"/>
+            </column>
+            <column name="usr_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_booking_usr" references="usr(usr_id)"/>
+            </column>
+            <column name="start_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_date" type="date">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-plot-booking-indexes" author="Nickknack">
+        <createIndex tableName="plot_booking" indexName="plot_booking_plot_id_idx">
+            <column name="plot_id"></column>
+        </createIndex>
+        <createIndex tableName="plot_booking" indexName="plot_booking_usr_id_idx">
+            <column name="usr_id"></column>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-plot-visit" author="Nickknack">
+        <createTable tableName="plot_visit">
+            <column name="plot_visit_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="plot_booking_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_visit_plot_booking" references="plot_booking(plot_booking_id)"/>
+            </column>
+            <column name="usr_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_visit_usr" references="usr(usr_id)"/>
+            </column>
+            <column name="status" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="start_time" type="time">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_time" type="time">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-plot-visit-plot-booking-id-index" author="Nickknack">
+        <createIndex tableName="plot_visit" indexName="plot_visit_plot_booking_id_idx">
+            <column name="plot_booking_id"></column>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="create-plot-booking-plant" author="Nickknack">
+        <createTable tableName="plot_booking_plant">
+            <column name="plot_booking_plant_id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="plot_booking_id" type="varchar(36)">
+                <constraints nullable="false" foreignKeyName="fk_plot_booking_plant_plot_booking" references="plot_booking(plot_booking_id)"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="text" />
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-plot-booking-plant-plot-booking-id-index" author="Nickknack">
+        <createIndex tableName="plot_booking_plant" indexName="plot_booking_plant_plot_booking_id_idx">
+            <column name="plot_booking_id"></column>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>
