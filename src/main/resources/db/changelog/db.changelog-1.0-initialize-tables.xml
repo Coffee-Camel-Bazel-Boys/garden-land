@@ -23,7 +23,7 @@
         </createIndex>
     </changeSet>
     
-    <changeSet id="create-land-able" author="Nickknack">
+    <changeSet id="create-land-table" author="Nickknack">
         <createTable tableName="land">
             <column name="land_id" type="varchar(36)">
                 <constraints primaryKey="true" nullable="false" />

@@ -5,7 +5,8 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class UserDto {
-    private String userNumber;
-    private String name;
+public class LandRuleDto {
+    private String landRuleNumber;
+    private String landNumber;
+    private String description;
 }
