@@ -8,6 +8,8 @@ java_library(
         "@maven//:org_springframework_boot_spring_boot_starter_web",
         "@maven//:org_springframework_spring_context",
         "@maven//:org_springframework_spring_web",
+        "@maven//:org_liquibase_liquibase_core",
+        "//:lombok",
     ],
 )
 

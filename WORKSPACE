@@ -34,6 +34,8 @@ maven_install(
         "org.springframework:spring-context:5.1.5.RELEASE",
         "org.springframework:spring-test:5.1.5.RELEASE",
         "org.springframework:spring-web:5.1.5.RELEASE",
+        "org.projectlombok:lombok:1.18.22",
+        "org.liquibase:liquibase-core:4.8.0",
     ],
     fetch_sources = True,
     maven_install_json = "//:maven_install.json",
@@ -44,5 +46,6 @@ maven_install(
 )
 
 # COmment out this and run `bazelisk run @unpinned_maven//:pin` if you add dependencies
+# Interesting might work without commenting this out...
 load("@maven//:defs.bzl", "pinned_maven_install")
 pinned_maven_install()
