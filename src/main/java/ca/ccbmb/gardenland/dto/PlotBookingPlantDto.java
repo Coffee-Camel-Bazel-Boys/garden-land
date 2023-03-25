@@ -8,4 +8,6 @@ import lombok.experimental.Accessors;
 public class PlotBookingPlantDto {
     private String plotBookingPlantNumber;
     private String plotBookingNumber;
+    private String name;
+    private String description;
 }

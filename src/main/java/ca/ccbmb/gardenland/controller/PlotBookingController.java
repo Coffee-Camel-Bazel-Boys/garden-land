@@ -1,5 +1,6 @@
 package ca.ccbmb.gardenland.controller;
 
+import ca.ccbmb.gardenland.core.plot.booking.PlotBookingService;
 import ca.ccbmb.gardenland.dto.PlotBookingDto;
 import ca.ccbmb.gardenland.dto.PlotBookingSearchCriteriaDto;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/plot-bookings")
 @RequiredArgsConstructor
 public class PlotBookingController {
+    private final PlotBookingService service;
+
     @GetMapping("/{plotBookingNumber}")
     public PlotBookingDto get(@PathVariable String plotBookingNumber) {
-        return null;
+        return service.get(plotBookingNumber);
     }
 
     @GetMapping("")
